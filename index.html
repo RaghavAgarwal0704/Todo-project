@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<!-- <link rel="stylesheet" type="text/css" href="assets/css/style.css"> -->
+	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<style type="text/css">
+		#container
+		{
+			background:#f7f7f7;
+			width:300px;
+			height:auto;
+			margin:100px auto;
+			box-shadow:0 0 3px rgba(0,0,0,0.1);
+		}
+		.completed
+		{
+			color:gray;
+			text-decoration:line-through;
+		}
+		h1
+		{
+			margin:0;
+			padding:10px 20px;
+			background:#2980b9;
+			text-transform:uppercase;
+			font-size:24px;
+			font-weight:normal;
+			color:white;
+		}
+		body
+		{
+			font-family:Roboto,sans-serif;
+			background: #2980B9;  /* fallback for old browsers */
+			background: -webkit-linear-gradient(to left, #EEEEEE, #6DD5FA, #2980B9);  /* Chrome 10-25, Safari 5.1-6 */
+			background: linear-gradient(to left, #EEEEEE, #6DD5FA, #2980B9); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+		}
+		ul
+		{
+			list-style-type:none;
+			margin:0; 
+			padding:0;
+		}
+		li
+		{
+			background:white;
+			height:40px;
+			line-height:40px;
+			color:#666;
+			padding-left:16px;
+		}
+		li:nth-child(2n)
+		{
+			background:#f7f7f7;
+		}
+		input
+		{
+			width:100%;
+			box-sizing:border-box;
+			padding:13px 13px 13px 20px;
+			background:#f7f7f7;
+			font-size:15px;
+			color:#2980b9;
+			font-weight:600;
+			border:1px solid gray;
+			margin:0;
+		}
+		input:focus
+		{
+			background:white;
+			outline:none;
+			border:2px solid #2980b9;
+			cursor:red;
+		}
+		::placeholder
+		{
+			color:#888;
+			font-weight:600;
+		}
+		.fa-plus
+		{
+			float:right;
+			padding:5px 5px;
+			font-size:20px;
+			color:white;
+		}
+		.fa-trash-o
+		{
+			font-size:20px;
+			color:red;
+			float:left;
+			padding-right:10px;
+			padding-left:1px;
+			padding-top:10px;
+		}
+		.forFading
+		{
+			display:none;
+		}
+	</style>
+	<title>Todo</title>
+</head>
+<body>
+	<div id="container">
+		<h1>TO-DO LIST <i class="fa fa-plus"></i></h1>
+		<input class="forFading" type="text" placeholder="Add new TO-DO">
+		<ul>
+			<li><span class="hey"><i class="fa fa-trash-o"></i></span>Wish Yash happy birthday.</li>
+			<li><span class="hey"><i class="fa fa-trash-o"></i></span>Complete Cao assignment.</li>
+			<li><span class="hey"><i class="fa fa-trash-o"></i></span>Bring vegetables.</li>
+			<li><span class="hey"><i class="fa fa-trash-o"></i></span>Water the plants.</li>
+			<li><span class="hey"><i class="fa fa-trash-o"></i></span>Complete history homework.</li>
+		</ul>
+	</div>
+	<!-- <script type="text/javascript" src="assets/js/script.js"></script> -->
+	<script type="text/javascript">
+		$("ul").on("click","span",function()
+		{
+			$(this).parent().fadeOut(500,function()
+			{
+				$(this).remove();	
+			})
+		})
+		$("ul").on("click","li",function()
+		{
+			$(this).toggleClass("completed")
+		})
+		$("input").on("keypress",function(event)
+		{
+			if(event.which===13)
+				{
+					var  text='<li><span><i class="fa fa-trash-o"></i></span> '+$(this).val()+'</li>';
+					$("ul").append(text);
+					$("input").val("");
+					$("input").fadeOut(10);
+				}
+		})
+		$(".fa-plus").on("click",function()
+		{
+			$("input").fadeToggle(500);
+		})
+	</script>
+</body>
+</html>
